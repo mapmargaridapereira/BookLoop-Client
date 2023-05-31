@@ -21,7 +21,7 @@ Interactive platform where users can upload and offer books for swap, and view o
 - **community** - As a user I want to see a list of contributors to the website.
 - **books-offered** - Viewing all books users submitted for offer.
 - **books-wished** - Viewing all books users wished for.
-- **books-filter** - As a user I want to see the list of books filtered by my preferences.
+<!-- - **books-filter** - As a user I want to see the list of books filtered by my preferences. -->
 - **book-details** - As a user I want to see more details of the book, to see who has it up for offer, and also which users have it wishlisted.
 - **404** - Custom 404 page to show I went somewhere that doesn't exist
 - **500** - Custom 500 page to show the error isn't my fault
@@ -41,11 +41,11 @@ Interactive platform where users can upload and offer books for swap, and view o
 | `/user-profile/edit`       | EditProfilePage       | user only `<PrivateRoute>` | Edit user profile form.                                                  |
 | `/books/offer`             | NewBookOfferPage      | user only `<PrivateRoute>` | Create new book to offer for trade.                                      |
 | `/offers`                  | BooksAvailablePage    | public `<Route>`           | List of books currently available for offer on the website.              |
-| `/latest-wished`           | BooksLatestWishedPage | public `<Route>`           | List of books last wished for by users.                                  |
-| `/most-wished`             | BooksMostWishedPage   | public `<Route>`           | List of books most wished for on website.                                |
+<!-- | `/latest-wished`           | BooksLatestWishedPage | public `<Route>`           | List of books last wished for by users.                                  |
+| `/most-wished`             | BooksMostWishedPage   | public `<Route>`           | List of books most wished for on website.      -->                           |
 | `/book/:bookId`            | BookDetailsPage       | public `<Route>`           | Displays book details.                                                   |
 | `/community/users/`        | UserCommunityPage     | user only `<PrivateRoute>` | Overview of users registered to website.                                 |
-| `/community/users/:userId` | UserDetailsPage       | user only `<PrivateRoute>` | Details of specific user. Includes books for offer and books wished for. |
+<!-- | `/community/users/:userId` | UserDetailsPage       | user only `<PrivateRoute>` | Details of specific user. Includes books for offer and books wished for. | -->
 
 ## Components
 
@@ -65,15 +65,15 @@ Pages:
 
 - BooksAvailablePage
 
-- BooksLatestWishedPage
+<!-- - BooksLatestWishedPage
 
-- BooksMostWishedPage
+- BooksMostWishedPage -->
 
 - BookDetailsPage
 
 - UserCommunityPage
 
-- UserDetailsPage
+<!-- - UserDetailsPage -->
 
 Components:
 
@@ -126,11 +126,11 @@ User model
   about: { type: String },
   imageUrl: {type: String},
   offeredBooks: [ { type: Schema.Types.ObjectId, ref:'Book' } ],
-  wishedBooks: [ { type: Schema.Types.ObjectId, ref:'Book' } ]
+  wishedBooks: [ { type: Schema.Types.ObjectId, ref:'Book' } ],
+  messages: [{type: Schema.Types.ObjectId, ref:'Message'}]
 }
 
 Book model
-
 
 {
   title: { type: String },
@@ -139,6 +139,14 @@ Book model
   description: { type: String },
   publisher: { type: String },
   published_date: { type: Number }
+}
+
+Message model
+
+{
+  receiver: { type: String},
+  subject: {type: String},
+  content: {type: String}
 }
 
 Review model
