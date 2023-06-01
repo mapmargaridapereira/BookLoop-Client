@@ -71,8 +71,8 @@ Pages:
 
 - BookDetailsPage
 
-- UserCommunityPage
-
+<!-- - UserCommunityPage
+ -->
 <!-- - UserDetailsPage -->
 
 Components:
