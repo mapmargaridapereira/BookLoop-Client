@@ -9,7 +9,7 @@ function BooksAvailablePage() {
 
   const getAllbooks = async () => {
     try {
-      const response = await axios.get("http://localhost:5005/api/offers");
+      const response = await axios.get(`${API_URL}/api/offers`);
       setBooks(response.data);
       console.log(response.data);
     } catch (error) {
@@ -28,7 +28,8 @@ function BooksAvailablePage() {
           return (
             <div className="bookCard card" key={book._id}>
               <Link to={`/offers/${book._id}`}>
-                <h3>{book.title}</h3>
+                <h2>{book.title}</h2>
+                <h3>{book.author}</h3>
               </Link>
             </div>
           );
