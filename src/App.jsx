@@ -21,7 +21,7 @@ function App() {
         <Route path="/offers" element={<BooksAvailablePage />} />
         <Route path="/offers/:bookId" element={<BookDetailsPage />} />
         <Route path="/offers/new" element={<NewBookOffer />} />
-        <Route path="/offers/edit:bookId" element={<EditBookOfferPage />} />
+        <Route path="/offers/edit/:bookId" element={<EditBookOfferPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
