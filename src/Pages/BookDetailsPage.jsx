@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios'; 
 import {Link, useParams} from 'react-router-dom';
 
-import booksService from "../../Services/book.service";
+import booksService from "../Services/book.service";
 
 
 function BookDetailsPage() {
