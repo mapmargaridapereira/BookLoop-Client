@@ -35,7 +35,7 @@ function BookDetailsPage() {
       )}
         
       <Link to={`/offers/edit/${bookId}`}>
-        <button>Edit Project</button>
+        <button>Edit Book</button>
       </Link>      
  
       <Link to="/offers">

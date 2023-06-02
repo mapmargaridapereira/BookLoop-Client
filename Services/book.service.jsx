@@ -36,12 +36,12 @@ class BooksService {
 
   // PUT /api/offers/:id
   updateBook = (id, requestBody) => {
-    return this.api.put(`/api/books/${id}`, requestBody);
+    return this.api.put(`/api/offers/${id}`, requestBody);
   };
 
   // DELETE /api/offers/:id
   deleteBook = id => {
-    return this.api.delete(`/api/books/${id}`);
+    return this.api.delete(`/api/offers/${id}`);
   };
 }
 

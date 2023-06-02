@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";
@@ -24,14 +24,14 @@ function NewBookOffer(props) {
         setGenre("");
         setDescription("");
         setPublisher("");
-/*         props.refreshBooks(); */
+
     })
     .catch((error)=>console.log(error));
   }
 
   return (
     <div className="NewBookOffer">
-      <h3>Add Project</h3>
+      <h3>Add New Book for Offer</h3>
 
       <form>
         <label>Title:</label>
