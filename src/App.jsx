@@ -9,6 +9,7 @@ import BookDetailsPage from "./Pages/BookDetailsPage";
 import SignUpPage from "./Pages/SignupPage";
 import LoginPage from "./Pages/LoginPage";
 import ProfilePage from "./Pages/ProfilePage";
+import EditBookOfferPage from "./Pages/EditBookOfferPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/offers" element={<BooksAvailablePage />} />
         <Route path="/offers/:bookId" element={<BookDetailsPage />} />
         <Route path="/offers/new" element={<NewBookOffer />} />
+        <Route path="/offers/edit:bookId" element={<EditBookOfferPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />

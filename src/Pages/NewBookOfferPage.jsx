@@ -28,7 +28,7 @@ function NewBookOffer() {
       genre: book.genre,
       description: book.description,
       publisher: book.publisher
-    }
+    } 
 
     booksService.createOffer(data)
     .then(()=>{
