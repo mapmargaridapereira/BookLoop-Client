@@ -1,29 +1,37 @@
-import { useState, useEffect } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";
 
 import booksService from "../Services/book.service";
 
-function NewBookOffer(props) {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
-  const [description, setDescription] = useState("");
-  const [publisher, setPublisher] = useState("");
+function NewBookOffer() {
+  const [book, setBook] = useState({
+    title : "",
+    author: "",
+    genre: "",
+    description: "",
+    publisher: ""
+  })
 
   const handleSubmit = (e) =>{
     e.preventDefault();
+    setBook({...book, [e.target.name] : e.target.value})
+  }
 
-    const requestBody = {title, author, genre, description, publisher};
+  const saveNewOffer = (e) => {
+    e.preventDefault;
 
-    booksService.createOffer(requestBody)
+    const data = {
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      description: book.description,
+      publisher: book.publisher
+    }
+
+    booksService.createOffer(data)
     .then(()=>{
-        setTitle("");
-        setAuthor("");
-        setGenre("");
-        setDescription("");
-        setPublisher("");
 
     })
     .catch((error)=>console.log(error));
@@ -33,45 +41,45 @@ function NewBookOffer(props) {
     <div className="NewBookOffer">
       <h3>Add New Book for Offer</h3>
 
-      <form>
+      <form onSubmit={saveNewOffer}>
         <label>Title:</label>
         <input
           type="text"
           name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={book.title}
+          onChange={handleSubmit}
         />
 
         <label>Author:</label>
         <textarea
           type="text"
           name="author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          value={book.author}
+          onChange={handleSubmit}
         />
 
 <label>Genre:</label>
         <textarea
           type="text"
           name="genre"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
+          value={book.genre}
+          onChange={handleSubmit}
         />
 
 <label>Description:</label>
         <textarea
           type="text"
           name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={book.description}
+          onChange={handleSubmit}
         />
 
 <label>Publisher:</label>
         <textarea
           type="text"
           name="publisher"
-          value={publisher}
-          onChange={(e) => setPublisher(e.target.value)}
+          value={book.publisher}
+          onChange={handleSubmit}
         />
 
         <button type="submit">Submit</button>
