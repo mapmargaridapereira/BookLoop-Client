@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
+import NewBookOffer from './NewBookOfferPage';
+import BooksAvailablePage from './BooksAvailablePage';
+import EditBookOfferPage from './EditBookOfferPage';
+
+
+
 
 
  
@@ -31,30 +37,39 @@ function ProfilePage() {
         getUser();
       }, []); 
 
-     // os comentados eu vou tentar no fim de semana 
-     
-     
-      /*
-      const getOffers = () =>{
-        
-    
-    }
-        */
+
+
+      
+      const fetchBooks = async () => {
+        const response = await fetch("./NewBookOfferPage");
+        const results = await response.json();
+        setBooks(results);
+      };
+    console.log(notes)
+      useEffect(() => {
+        fetchBooks();
+      }, []);
+      
 
     return (
       <div>
             <h1>
               Hello, User
             </h1>
-            
-            
-            {/*
+          
+        
             <Link to={`/Pages/NewBookOfferPage/${newbookofferpageId}`}>
-            <button >
-                New Book Offer
-            </button>
+            <button >New Book Offer</button>
             </Link>
-            */}
+
+            <Link to={`/offers/edit/${bookId}`}>
+            <button>Edit Book</button>
+            </Link>      
+ 
+            <Link to="/offers">
+            <button>Back to available books</button>
+            </Link>
+           
 
 
       </div>
