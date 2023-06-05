@@ -40,6 +40,10 @@ class AuthService {
     // same as
     // return axios.post("http://localhost:5005/api/verify");
   };
+
+  getUser = (userId) => {
+    return this.api.get(`/api/profile/${userId}`);
+  };
 }
 
 // Create one instance object
