@@ -9,7 +9,7 @@ function SearchBar({offers, setSearchResults}) {
     const handleSearchChange = (e) => {
         if(!e.target.value) return setSearchResults(offers)
 
-        const resultsArray = offers.filter(post => post.title.includes(e.target.value) || post.author.includes(e.target.value) || post.genre.includes(e.target.value))
+        const resultsArray = offers.filter(book => book.title.includes(e.target.value) || book.author.includes(e.target.value) || book.genre.includes(e.target.value))
 
         setSearchResults = (resultsArray)
     }
@@ -23,7 +23,7 @@ function SearchBar({offers, setSearchResults}) {
             id="search"
             onChange={handleSearchChange}
             />
-            <button className="search_button">
+            <button className="search_button" type="submit">
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </button>
         </form>

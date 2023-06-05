@@ -1,5 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const API_URL = "http://localhost:5005";
+
+import booksService from "./Services/book.service";
 
 import Navbar from "./Components/NavBar";
 import SearchBar from "./Components/SearchBar";
@@ -15,6 +21,25 @@ import AboutUsPage from "./Pages/AboutUsPage";
 import EditProfilePage from "./Pages/EditProfilePage";
 
 function App() {
+  const [offers, setOffers] = useState([])
+  const [searchResults, setSearchResults] = useState([])
+
+
+  const getAllbooks = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/api/offers`);
+      setOffers(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllbooks();
+  }, []);
+
+
   return (
     <div className="App">
       <Navbar />

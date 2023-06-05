@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";
@@ -6,6 +7,8 @@ const API_URL = "http://localhost:5005";
 import booksService from "../Services/book.service";
 
 function NewBookOffer() {
+  const navigate = useNavigate();
+
   const [book, setBook] = useState({
     title : "",
     author: "",
@@ -20,7 +23,7 @@ function NewBookOffer() {
   }
 
   const saveNewOffer = (e) => {
-    e.preventDefault;
+    e.preventDefault();
 
     const data = {
       title: book.title,
@@ -32,7 +35,7 @@ function NewBookOffer() {
 
     booksService.createOffer(data)
     .then(()=>{
-
+      navigate("/profile")
     })
     .catch((error)=>console.log(error));
   }
