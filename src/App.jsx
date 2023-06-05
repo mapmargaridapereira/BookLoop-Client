@@ -10,6 +10,7 @@ import SignUpPage from "./Pages/SignupPage";
 import LoginPage from "./Pages/LoginPage";
 import ProfilePage from "./Pages/ProfilePage";
 import EditBookOfferPage from "./Pages/EditBookOfferPage";
+import AboutUsPage from "./Pages/AboutUsPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/aboutus" element={<AboutUsPage/>} />
       </Routes>
     </div>
   );

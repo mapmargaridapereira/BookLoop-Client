@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
-
-import NewBookOffer from './NewBookOfferPage';
-import BooksAvailablePage from './BooksAvailablePage';
-import EditBookOfferPage from './EditBookOfferPage';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 
-
+import { AuthContext } from '../Context/auth.context';
 
 
  
@@ -16,6 +12,9 @@ const API_URL = "http://localhost:5005/";
 function ProfilePage() {
     const [user, setUser] = useState(null);
     const { id } = useParams();
+
+    const navigate = useNavigate();
+    const authContext = useContext(AuthContext);
 
     const getUser = async () => {
         try {
@@ -45,10 +44,11 @@ function ProfilePage() {
         const results = await response.json();
         setBooks(results);
       };
-    console.log(notes)
-      useEffect(() => {
-        fetchBooks();
-      }, []);
+
+      const handleLogout = () => {
+        authContext.logOutUser();
+        navigate('/');
+      };
       
 
     return (
@@ -58,19 +58,15 @@ function ProfilePage() {
             </h1>
           
         
-            <Link to={`/Pages/NewBookOfferPage/${newbookofferpageId}`}>
+            <Link to="/offers/new">
             <button >New Book Offer</button>
             </Link>
-
-            <Link to={`/offers/edit/${bookId}`}>
-            <button>Edit Book</button>
-            </Link>      
  
             <Link to="/offers">
             <button>Back to available books</button>
             </Link>
-           
 
+            <button onClick={handleLogout}>Logout</button>
 
       </div>
     )}
