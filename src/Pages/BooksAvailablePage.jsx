@@ -13,8 +13,13 @@ function BooksAvailablePage() {
 
 
   const getAllbooks = async () => {
+    const storedToken = localStorage.getItem("authToken");
+
     try {
-      const response = await axios.get(`${API_URL}/api/offers`);
+      const response = await axios.get(`${import.meta.env.VITE_APP_SERVER_URL}/api/offers`,
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
       setBooks(response.data);
     } catch (error) {
       console.log(error);

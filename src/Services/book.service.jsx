@@ -21,7 +21,7 @@ class BooksService {
 
   // POST /api/offers
   createOffer = data => {
-    return this.api.post('/api/offers', data);
+    return this.api.post('/api/offers/new', data);
   };
 
   // GET /api/offers
