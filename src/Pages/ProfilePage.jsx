@@ -8,7 +8,7 @@ const API_URL = "http://localhost:5005/";
 
 function ProfilePage() {
   const [thisUser, setUser] = useState(null);
-  const { id } = useParams();
+  const { userId } = useParams();
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -18,14 +18,14 @@ function ProfilePage() {
       const storedToken = localStorage.getItem("authToken");
 
       let response = await axios.get(
-        `${import.meta.env.VITE_APP_SERVER_URL}/api/profile/${user._id}`,
+        `${import.meta.env.VITE_APP_SERVER_URL}/api/profile/${userId}`,
         {
           headers: { Authorization: `Bearer ${storedToken}` },
         }
       );
 
       setUser(response.data);
-      console.log(response.data);
+      console.log("this user", response.data);
     } catch (error) {
       console.log(error);
     }
@@ -48,22 +48,29 @@ function ProfilePage() {
 
   return (
     <div>
-      <h1>Hello, {user.name}</h1>
-      <p>Email: {user.email}</p>
-      <ul>Offered Books: {user.offeredBooks}</ul>
-      <ul>Wished Books: {user.wishedBooks}</ul>
-      <img src={user.profileImg} alt="user face" className='user-pic'/>
-      
+      {thisUser && (
+        <>
+          <h1>Hello, {thisUser.name}</h1>
+          <p>Email: {thisUser.email}</p>
+          <ul>Offered Books: {thisUser.offeredBooks}</ul>
+          <ul>Wished Books: {thisUser.wishedBooks}</ul>
+          <img
+            src={thisUser.profileImg}
+            alt="thisUser face"
+            className="user-pic"
+          />
 
-      <Link to="/offers/new">
-        <button>New Book Offer</button>
-      </Link>
+          <Link to="/offers/new">
+            <button>New Book Offer</button>
+          </Link>
 
-      <Link to="/offers">
-        <button>Back to available books</button>
-      </Link>
+          <Link to="/offers">
+            <button>Back to available books</button>
+          </Link>
 
-      <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      )}
     </div>
   );
 }
