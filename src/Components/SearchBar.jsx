@@ -9,8 +9,10 @@ const API_URL = "http://localhost:5005";
 
 function SearchBar() {
   const [allBooks, setAllBooks] = useState([]);
+  const [searchString, setSearchString] = useState("");
 
-  const getAllbooks = async () => {
+
+/*   const getAllbooks = async () => {
     let response = await axios.get(`${API_URL}/api/offers`);
     setAllBooks(response.data);
     console.log("book titles", response.data);
@@ -18,15 +20,15 @@ function SearchBar() {
 
   useEffect(() => {
     getAllbooks();
-  }, []);
+  }, []); */
 
-  /* const handleSearch = (e) => {
+    const handleSearch = (e) => {
     setSearchString(e.target.value);
 
     searchOffers(e.target.value);
-  }; */
+  };
 
-  /*     const handleSubmit = (e) =>
+const handleSubmit = (e) =>
         e.preventDefault();
 
     const handleSearchChange = (e) => {
@@ -35,7 +37,7 @@ function SearchBar() {
         const resultsArray = offers.filter(book => book.title.includes(e.target.value) || book.author.includes(e.target.value) || book.genre.includes(e.target.value))
 
         setSearchResults = (resultsArray)
-    } */
+    }
 
   return (
     <>

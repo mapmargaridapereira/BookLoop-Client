@@ -50,6 +50,7 @@ function BooksAvailablePage() {
           return (
             <div className="bookCard card" key={book._id}>
               <Link to={`/offers/${book._id}`}>
+                <img src={book.bookImg}/>
                 <h2>{book.title}</h2>
                 <h3>{book.author}</h3>
               </Link>

@@ -27,6 +27,7 @@ function BookDetailsPage() {
     <div className="book-details">
       {book && (
         <div>
+          <img src={book.bookImg}/>
           <h2>{book.title}</h2>
           <h3>{book.author}</h3>
           <h4>{book.genre}</h4>

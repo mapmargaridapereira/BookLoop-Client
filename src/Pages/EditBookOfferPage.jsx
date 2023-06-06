@@ -5,6 +5,7 @@ import booksService from "../Services/book.service";
 function EditBookOfferPage() {
   // Write State
   const [book, setBook] = useState({
+    bookImg: "",
     title: "",
     author: "",
     genre: "",
@@ -27,6 +28,7 @@ function EditBookOfferPage() {
     e.preventDefault;
 
     const data = {
+      bookImg: book.bookImg,
       title: book.title,
       author: book.author,
       genre: book.genre,

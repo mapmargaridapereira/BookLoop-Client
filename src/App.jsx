@@ -8,7 +8,6 @@ const API_URL = "http://localhost:5005";
 import booksService from "./Services/book.service";
 
 import Navbar from "./Components/NavBar";
-import SearchBar from "./Components/SearchBar";
 import HomePage from "./Pages/HomePage";
 import BooksAvailablePage from "./Pages/BooksAvailablePage";
 import NewBookOffer from "./Pages/NewBookOfferPage";
@@ -43,7 +42,6 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <SearchBar offers={offers} setSearchResults={setSearchResults} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/offers" element={<BooksAvailablePage />} />

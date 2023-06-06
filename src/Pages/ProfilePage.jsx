@@ -6,10 +6,12 @@ import { AuthContext } from "../Context/auth.context";
 
 const API_URL = "http://localhost:5005/";
 
+
 function ProfilePage() {
   const [thisUser, setUser] = useState(null);
   const { userId } = useParams();
 
+  const { logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
@@ -42,9 +44,9 @@ function ProfilePage() {
   };
 
   const handleLogout = () => {
-    AuthContext.logOutUser();
+    logoutUser();
     navigate("/");
-  };
+  };  
 
   return (
     <div>
