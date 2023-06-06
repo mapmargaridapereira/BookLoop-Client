@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import SearchBar from "../Components/SearchBar";
 
 const API_URL = "http://localhost:5005";
 
 function BooksAvailablePage() {
+  const [allBooks, setAllBooks] = useState([]);
   const [books, setBooks] = useState([]);
+
+  const [isOffersArrayEmpty, setIsOffersArrayEmpty] = useState(false);
+
 
   const getAllbooks = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/offers`);
       setBooks(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -21,8 +25,21 @@ function BooksAvailablePage() {
     getAllbooks();
   }, []);
 
+  const searchBooksAvailable = (queryString) => {
+    let searchedOffers = books.filter((book) => {
+        return book.title.toLowerCase().includes(queryString.toLowerCase());
+    })
+
+    if(searchedOffers.length === 0) {
+        setIsOffersArrayEmpty(true);
+    }
+
+    setBooks(searchedOffers);  
+}
+
   return (
     <div className="BooksAvailablePage">
+    <SearchBar searchBooksAvailable={searchBooksAvailable}/>
       {books &&
         books.map((book) => {
           return (

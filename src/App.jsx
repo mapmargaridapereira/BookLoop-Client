@@ -52,7 +52,7 @@ function App() {
         <Route path="/offers/edit/:bookId" element={<EditBookOfferPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/:userId" element={<ProfilePage />} />
         <Route path="/aboutus" element={<AboutUsPage/>} />
         <Route path="/editprofile" element={<EditProfilePage/>}/>
       </Routes>
