@@ -42,13 +42,17 @@ function ProfilePage() {
   };
 
   const handleLogout = () => {
-    authContext.logOutUser();
+    AuthContext.logOutUser();
     navigate("/");
   };
 
   return (
     <div>
       <h1>Hello, {user.name}</h1>
+      <p>Email: {user.email}</p>
+      <ul>Offered Books: {user.offeredBooks}</ul>
+      <ul>Wished Books: {user.wishedBooks}</ul>
+      
 
       <Link to="/offers/new">
         <button>New Book Offer</button>
