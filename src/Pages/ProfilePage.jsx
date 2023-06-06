@@ -52,6 +52,7 @@ function ProfilePage() {
       <p>Email: {user.email}</p>
       <ul>Offered Books: {user.offeredBooks}</ul>
       <ul>Wished Books: {user.wishedBooks}</ul>
+      <img src={user.profileImg} alt="user face" className='user-pic'/>
       
 
       <Link to="/offers/new">
