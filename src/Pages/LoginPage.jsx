@@ -33,7 +33,7 @@ function LoginPage() {
         // authenticate the User
         authenticateUser();
 
-        navigate("/profile");
+        navigate("/");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;

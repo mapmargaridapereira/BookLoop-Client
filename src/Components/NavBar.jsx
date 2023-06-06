@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/auth.context";
 
 function Navbar() {
+  const { user } = useContext(AuthContext);
   return (
     <nav>
       <Link to="/">
@@ -23,9 +26,11 @@ function Navbar() {
         <button>Login</button>
       </Link>
       {/* temporary, until we add conditional rendering */}
-      <Link to="/profile">
-        <button>Profile</button>
-      </Link>
+      {user && (
+        <Link to={`/profile/${user._id}`}>
+          <button>Profile</button>
+        </Link>
+      )}
 
       <Link to="/editprofile">
         <button>Edit Profile</button>
