@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import booksService from "../Services/book.service";
 
+import axios from "axios";
+
 function EditBookOfferPage() {
   // Write State
   const [book, setBook] = useState({
@@ -16,6 +18,35 @@ function EditBookOfferPage() {
   const { bookId } = useParams();
 
   const navigate = useNavigate();
+
+ 
+  const [bookImg, setBookImg] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleUpload = async (e) => {
+    try {
+      setLoading(true);
+
+      //formData === enctype=multipart/formdata
+      const uploadData = new FormData();
+
+      //add the file to the formData
+      uploadData.append("bookImg", e.target.files[0]);
+
+      //send the file to our api
+      const response = await axios.post(
+        `${import.meta.env.VITE_APP_SERVER_URL}/api/upload`,
+        uploadData
+      );
+
+      console.log(response.data.fileUrl);
+      setBookImg(response.data.fileUrl);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }; 
 
   // Create a function that Handles Edit Form Submit
   const handleSubmit = (e) => {
@@ -101,6 +132,29 @@ const deleteBook = () => {
         value={book.publisher}
         onChange={handleSubmit}
       />
+
+         {/* for images */}
+         <label htmlFor="profileImg" className="form-box">
+          <p>Image</p>
+          {bookImg ? (
+            <>
+              <img src={bookImg} alt="current" />
+              <p className="small-buttons">Change Book Image</p>
+            </>
+          ) : (
+            <i className="fa fa-3x fa-camera">
+              <p>Add Book Image</p>
+            </i>
+          )}
+          <input
+            type="file"
+            name="bookImg"
+            id="bookImg"
+            onChange={handleUpload}
+            className="image-input"
+            required
+          />
+        </label>
 
       <button type="submit">Submit Changes</button>
     </form>
