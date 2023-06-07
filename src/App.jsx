@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
+
 
 import booksService from "./Services/book.service";
 
@@ -20,13 +20,14 @@ import AboutUsPage from "./Pages/AboutUsPage";
 import EditProfilePage from "./Pages/EditProfilePage";
 
 function App() {
-  const [offers, setOffers] = useState([])
-  const [searchResults, setSearchResults] = useState([])
-
+  const [offers, setOffers] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const getAllbooks = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/offers`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_SERVER_URL}/api/offers`
+      );
       setOffers(response.data);
       console.log(response.data);
     } catch (error) {
@@ -37,7 +38,6 @@ function App() {
   useEffect(() => {
     getAllbooks();
   }, []);
-
 
   return (
     <div className="App">
@@ -51,8 +51,8 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile/:userId" element={<ProfilePage />} />
-        <Route path="/aboutus" element={<AboutUsPage/>} />
-        <Route path="/editprofile" element={<EditProfilePage/>}/>
+        <Route path="/aboutus" element={<AboutUsPage />} />
+        <Route path="/editprofile" element={<EditProfilePage />} />
       </Routes>
     </div>
   );

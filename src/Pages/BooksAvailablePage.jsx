@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import SearchBar from "../Components/SearchBar";
 
-const API_URL = "http://localhost:5005";
+
 
 function BooksAvailablePage() {
   const [allBooks, setAllBooks] = useState([]);
   const [books, setBooks] = useState([]);
-
   const [isOffersArrayEmpty, setIsOffersArrayEmpty] = useState(false);
 
+  const [booksSearch, setBooksSearch] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const getAllbooks = async () => {
     const storedToken = localStorage.getItem("authToken");
 
     try {
-      const response = await axios.get(`${import.meta.env.VITE_APP_SERVER_URL}/api/offers`,
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_SERVER_URL}/api/offers`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      );
       setBooks(response.data);
+      setBooksSearch(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -30,27 +33,38 @@ function BooksAvailablePage() {
     getAllbooks();
   }, []);
 
-  const searchBooksAvailable = (queryString) => {
-    let searchedOffers = books.filter((book) => {
-        return book.title.toLowerCase().includes(queryString.toLowerCase());
-    })
 
-    if(searchedOffers.length === 0) {
-        setIsOffersArrayEmpty(true);
-    }
 
-    setBooks(searchedOffers);  
-}
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+
+    const filter = [];
+
+    books.map((book) => {
+      if (
+        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.genre.toLowerCase().includes(searchQuery.toLowerCase())
+      ) {
+        filter.push(book);
+      }
+    });
+
+    setBooksSearch(filter);
+    console.log(searchQuery);
+  };
 
   return (
     <div className="BooksAvailablePage">
-    <SearchBar searchBooksAvailable={searchBooksAvailable}/>
+
+      <input type="text" value={searchQuery} onChange={handleSearch} />
+
       {books &&
-        books.map((book) => {
+        booksSearch.map((book) => {
           return (
             <div className="bookCard card" key={book._id}>
               <Link to={`/offers/${book._id}`}>
-                <img src={book.bookImg}/>
+                <img src={book.bookImg} style={{ width: 200 }} />
                 <h2>{book.title}</h2>
                 <h3>{book.author}</h3>
               </Link>

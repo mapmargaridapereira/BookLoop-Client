@@ -1,17 +1,20 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../Context/auth.context";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
+
 
 import booksService from "../Services/book.service";
 
 function NewBookOffer() {
   const navigate = useNavigate();
   const { userId } = useParams();
-  
+
+  const { user } = useContext(AuthContext);
+
   const [book, setBook] = useState({
-    title : "",
+    title: "",
     author: "",
     genre: "",
     description: "",
@@ -51,8 +54,8 @@ function NewBookOffer() {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    setBook({...book, [e.target.name] : e.target.value})
-  }
+    setBook({ ...book, [e.target.name]: e.target.value });
+  };
 
   const saveNewOffer = (e) => {
     e.preventDefault();
@@ -66,12 +69,13 @@ function NewBookOffer() {
       bookImg: book.bookImg
     } 
 
-    booksService.createOffer(data)
-    .then(()=>{
-      navigate(`/profile/${userId}`)
-    })
-    .catch((error)=>console.log(error));
-  }
+    booksService
+      .createOffer(data, user._id)
+      .then(() => {
+        navigate(`/profile/${user._id}`);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="NewBookOffer">
@@ -94,7 +98,7 @@ function NewBookOffer() {
           onChange={handleSubmit}
         />
 
-<label>Genre:</label>
+        <label>Genre:</label>
         <textarea
           type="text"
           name="genre"
@@ -102,7 +106,7 @@ function NewBookOffer() {
           onChange={handleSubmit}
         />
 
-<label>Description:</label>
+        <label>Description:</label>
         <textarea
           type="text"
           name="description"
@@ -110,7 +114,7 @@ function NewBookOffer() {
           onChange={handleSubmit}
         />
 
-<label>Publisher:</label>
+        <label>Publisher:</label>
         <textarea
           type="text"
           name="publisher"

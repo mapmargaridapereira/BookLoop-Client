@@ -5,15 +5,14 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"; */
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-const API_URL = "http://localhost:5005";
+
 
 function SearchBar() {
   const [allBooks, setAllBooks] = useState([]);
   const [searchString, setSearchString] = useState("");
 
-
-/*   const getAllbooks = async () => {
-    let response = await axios.get(`${API_URL}/api/offers`);
+  /*   const getAllbooks = async () => {
+    let response = await axios.get(`${import.meta.env.VITE_APP_SERVER_URL}/api/offers`);
     setAllBooks(response.data);
     console.log("book titles", response.data);
   };
@@ -22,22 +21,26 @@ function SearchBar() {
     getAllbooks();
   }, []); */
 
-    const handleSearch = (e) => {
+  const handleSearch = (e) => {
     setSearchString(e.target.value);
 
     searchOffers(e.target.value);
   };
 
-const handleSubmit = (e) =>
-        e.preventDefault();
+  const handleSubmit = (e) => e.preventDefault();
 
-    const handleSearchChange = (e) => {
-        if(!e.target.value) return setSearchResults(offers)
+  const handleSearchChange = (e) => {
+    if (!e.target.value) return setSearchResults(offers);
 
-        const resultsArray = offers.filter(book => book.title.includes(e.target.value) || book.author.includes(e.target.value) || book.genre.includes(e.target.value))
+    const resultsArray = offers.filter(
+      (book) =>
+        book.title.includes(e.target.value) ||
+        book.author.includes(e.target.value) ||
+        book.genre.includes(e.target.value)
+    );
 
-        setSearchResults = (resultsArray)
-    }
+    setSearchResults = resultsArray;
+  };
 
   return (
     <>
