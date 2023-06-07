@@ -3,8 +3,6 @@ import { AuthContext } from "../Context/auth.context";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-
-
 import booksService from "../Services/book.service";
 
 function NewBookOffer() {
@@ -20,10 +18,9 @@ function NewBookOffer() {
     description: "",
     publisher: "",
     bookImg: "",
-  })
+  });
 
-
-   //images
+  //images
   const [bookImg, setBookImg] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -35,7 +32,7 @@ function NewBookOffer() {
       const uploadData = new FormData();
 
       //add the file to the formData
-      uploadData.append("bookImg", e.target.files[0]);
+      uploadData.append("profileImg", e.target.files[0]);
 
       //send the file to our api
       const response = await axios.post(
@@ -52,7 +49,7 @@ function NewBookOffer() {
     }
   };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     setBook({ ...book, [e.target.name]: e.target.value });
   };
@@ -66,8 +63,8 @@ function NewBookOffer() {
       genre: book.genre,
       description: book.description,
       publisher: book.publisher,
-      bookImg: book.bookImg
-    } 
+      bookImg: bookImg,
+    };
 
     booksService
       .createOffer(data, user._id)
@@ -123,7 +120,7 @@ function NewBookOffer() {
         />
 
         {/* for images */}
-<label htmlFor="bookImg" className="form-box">
+        <label htmlFor="bookImg" className="form-box">
           <p>Image</p>
           {bookImg ? (
             <>
@@ -143,7 +140,7 @@ function NewBookOffer() {
             className="image-input"
             required
           />
-  </label>
+        </label>
 
         <button type="submit">Submit</button>
       </form>
