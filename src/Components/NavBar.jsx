@@ -31,10 +31,11 @@ function Navbar() {
           <button>Profile</button>
         </Link>
       )}
-
+      {user && (
       <Link to="/editprofile">
         <button>Edit Profile</button>
       </Link>
+      )}
     </nav>
   );
 }

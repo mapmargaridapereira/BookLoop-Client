@@ -7,6 +7,7 @@ import axios from "axios";
 function EditProfilePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [about, setAbout] = useState("");
 
   const { user, authenticateUser } = useContext(AuthContext);
 
@@ -26,6 +27,7 @@ function EditProfilePage() {
       );
       setName(response.data.name);
       setEmail(response.data.email);
+      setAbout(response.data.about);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -68,7 +70,7 @@ function EditProfilePage() {
     try {
       e.preventDefault();
       const storedToken = localStorage.getItem("authToken");
-      const requestBody = { name, email, profileImg };
+      const requestBody = { name, email, about, profileImg };
 
       let response = await axios.put(
         `${import.meta.env.VITE_APP_SERVER_URL}/api/profile/${user._id}`,
@@ -110,12 +112,20 @@ function EditProfilePage() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <label>Email:</label>
+        <label>Contact Email:</label>
         <input
           type="email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label>About:</label>
+        <input
+          type="about"
+          name="about"
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
         />
 
         {/* for images */}

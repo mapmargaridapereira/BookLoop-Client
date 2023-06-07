@@ -10,11 +10,14 @@ function NewBookOffer() {
   const { userId } = useParams();
 
   const { user } = useContext(AuthContext);
-
+  
+/*   const [uploadedBooks, setUploadedBooks] = useState([]);
+ */  
   const [book, setBook] = useState({
     title: "",
     author: "",
     genre: "",
+    language: "",
     description: "",
     publisher: "",
     bookImg: "",
@@ -24,7 +27,10 @@ function NewBookOffer() {
   const [bookImg, setBookImg] = useState("");
   const [loading, setLoading] = useState(false);
 
+
   const handleUpload = async (e) => {
+/*     setUploadedBooks(prevBooks => [...prevBooks, book]);
+ */
     try {
       setLoading(true);
 
@@ -61,6 +67,7 @@ function NewBookOffer() {
       title: book.title,
       author: book.author,
       genre: book.genre,
+      language: book.language,
       description: book.description,
       publisher: book.publisher,
       bookImg: bookImg,
@@ -102,7 +109,13 @@ function NewBookOffer() {
           value={book.genre}
           onChange={handleSubmit}
         />
-
+        <label>Language:</label>
+        <textarea
+          type="text"
+          name="language"
+          value={book.language}
+          onChange={handleSubmit}
+        />
         <label>Description:</label>
         <textarea
           type="text"

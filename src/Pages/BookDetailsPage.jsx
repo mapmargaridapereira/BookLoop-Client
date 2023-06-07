@@ -23,7 +23,7 @@ function BookDetailsPage() {
       .catch((error) => console.log(error));
   };
 
-  const getUser = async () => {
+/*   const getUser = async () => {
     try {
       const storedToken = localStorage.getItem("authToken");
 
@@ -39,7 +39,7 @@ function BookDetailsPage() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
   useEffect(() => {
     getBook();
@@ -53,12 +53,13 @@ function BookDetailsPage() {
           <img src={book.bookImg} />
           <h2>Title: {book.title}</h2>
           <h3>Author: {book.author}</h3>
-          <h4>Publisher: {book.publisher}</h4>
           <h4>Genre: {book.genre}</h4>
+          <h4>Language: {book.language}</h4>
+          <h4>Publisher: {book.publisher}</h4>
           <h4>Description:</h4>
           <p>{book.description}</p>
           <a href={`/profile/${book.uploader._id}`}>
-            Being offered by:{book.uploader.name}
+            Being offered by: {book.uploader.name}
           </a>
         </div>
       )}

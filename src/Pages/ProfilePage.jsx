@@ -28,6 +28,7 @@ function ProfilePage() {
 
       setUser(response.data);
       console.log("this user", response.data);
+      console.log("user offered", response.data.offeredBooks)
     } catch (error) {
       console.log(error);
     }
@@ -52,15 +53,28 @@ function ProfilePage() {
     <div>
       {thisUser && (
         <>
-          <h1>Hello, {thisUser.name}</h1>
-          <p>Email: {thisUser.email}</p>
-          <ul>Offered Books: {thisUser.offeredBooks}</ul>
-          <ul>Wished Books: {thisUser.wishedBooks}</ul>
+          <h1>{thisUser.name}</h1>
           <img
             src={thisUser.profileImg}
             alt="thisUser face"
             className="user-pic"
+            style={{ width: 100 }}
           />
+          <p>Contact: {thisUser.email}</p>
+          <p>About: 
+          {thisUser.about}</p>
+          <ul>Offered Books: {thisUser.offeredBooks}</ul>
+          <ul>Wished Books: {thisUser.wishedBooks}</ul>
+
+{/*           <form onSubmit={handleFormSubmit}>
+        <label>Traded books with {thisUser.name}? Share how it went!</label>
+        <input
+          type="text"
+          name="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        </form> */}
 
           <Link to="/offers/new">
             <button>New Book Offer</button>
