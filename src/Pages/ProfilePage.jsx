@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../Context/auth.context";
 
-const API_URL = "http://localhost:5005/";
+
 
 
 function ProfilePage() {

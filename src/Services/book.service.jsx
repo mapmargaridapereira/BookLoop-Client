@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
 class BooksService {
   constructor() {
     this.api = axios.create({
-      baseURL: import.meta.env.VITE_APP_SERVER_URL || 'http://localhost:5005'
+      baseURL: import.meta.env.VITE_APP_SERVER_URL || "http://localhost:5005",
     });
 
     // Automatically set JWT token in the headers for every request
-    this.api.interceptors.request.use(config => {
+    this.api.interceptors.request.use((config) => {
       // Retrieve the JWT token from the local storage
-      const storedToken = localStorage.getItem('authToken');
+      const storedToken = localStorage.getItem("authToken");
 
       if (storedToken) {
         config.headers = { Authorization: `Bearer ${storedToken}` };
@@ -20,17 +20,17 @@ class BooksService {
   }
 
   // POST /api/offers
-  createOffer = data => {
-    return this.api.post('/api/offers/new', data);
+  createOffer = (data, userId) => {
+    return this.api.post(`/api/offers/new/${userId}`, data);
   };
 
   // GET /api/offers
   getAllBooks = () => {
-    return this.api.get('/api/offers');
+    return this.api.get("/api/offers");
   };
 
   // GET /api/offers/:id
-  getBook = id => {
+  getBook = (id) => {
     return this.api.get(`/api/offers/${id}`);
   };
 
@@ -40,7 +40,7 @@ class BooksService {
   };
 
   // DELETE /api/offers/:id
-  deleteBook = id => {
+  deleteBook = (id) => {
     return this.api.delete(`/api/offers/${id}`);
   };
 }
