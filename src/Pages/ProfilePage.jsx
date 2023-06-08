@@ -69,6 +69,16 @@ function ProfilePage() {
     }
   };
 
+  const renderReviews = () => {
+    if (thisUser && thisUser.reviews && thisUser.reviews.length > 0) {
+      return thisUser.reviews.map((review, index) => (
+        <p key={index}>{review.content}</p>
+      ));
+    } else {
+      return <p>No reviews available.</p>;
+    }
+  };
+
   return (
     <div>
       {thisUser && (
@@ -101,11 +111,16 @@ function ProfilePage() {
             <button type="submit">Submit Review</button>
           </form>
           <br></br>
-
-          <p>
-            Check what others have to say about trading with this user<br></br>
-            <p>"{thisUser.reviews[0].content}"</p>
-          </p>
+          {thisUser && (
+        <>
+          {/* ... */}
+          <h2>Check what others have to say about trading with this user</h2>
+          <br />
+          {renderReviews()}
+          <br />
+          {/* ... */}
+        </>
+      )}
           <br></br>
           <Link to="/offers/new">
             <button>New Book Offer</button>
