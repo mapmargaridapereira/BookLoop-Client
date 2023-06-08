@@ -56,8 +56,8 @@ function BooksAvailablePage() {
 
   return (
     <div className="BooksAvailablePage">
-
-      <input type="text" value={searchQuery} onChange={handleSearch} />
+  <h3>Search for books up for offer</h3>
+      <input type="text" value={searchQuery} placeholder="Search by Title, Author, or Genre" onChange={handleSearch} />
 
       {books &&
         booksSearch.map((book) => {

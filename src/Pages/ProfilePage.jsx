@@ -4,9 +4,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../Context/auth.context";
 
-
-
-
 function ProfilePage() {
   const [thisUser, setUser] = useState(null);
   const { userId } = useParams();
@@ -14,6 +11,12 @@ function ProfilePage() {
   const { logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+
+  const [review, setReview] = useState({
+    content: "",
+    author: "",
+    rating: "",
+  });
 
   const getUser = async () => {
     try {
@@ -28,7 +31,6 @@ function ProfilePage() {
 
       setUser(response.data);
       console.log("this user", response.data);
-      console.log("user offered", response.data.offeredBooks)
     } catch (error) {
       console.log(error);
     }
@@ -38,16 +40,39 @@ function ProfilePage() {
     getUser();
   }, []);
 
-  const fetchBooks = async () => {
+  /*   const fetchBooks = async () => {
     const response = await fetch("./NewBookOfferPage");
     const results = await response.json();
     setBooks(results);
-  };
+  }; */
 
   const handleLogout = () => {
     logoutUser();
     navigate("/");
-  };  
+  };
+
+  //review handling
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setReview({ ...review, [e.target.name]: e.target.value });
+  };
+
+  const saveNewReview = (e) => {
+    e.preventDefault();
+
+    const reviewData = {
+      content: "",
+      author: "",
+      rating: "",
+    };
+
+    const createNewReview = (reviewData, userId) => {
+      return axios.post(
+        `${import.meta.env.VITE_APP_SERVER_URL}/api/review/create/${userId}`,
+        reviewData
+      );
+    };
+  };
 
   return (
     <div>
@@ -61,21 +86,32 @@ function ProfilePage() {
             style={{ width: 100 }}
           />
           <p>Contact: {thisUser.email}</p>
-          <p>About: 
-          {thisUser.about}</p>
+          <p>
+            About:
+            {thisUser.about}
+          </p>
           <ul>Offered Books: {thisUser.offeredBooks}</ul>
           <ul>Wished Books: {thisUser.wishedBooks}</ul>
 
-{/*           <form onSubmit={handleFormSubmit}>
-        <label>Traded books with {thisUser.name}? Share how it went!</label>
-        <input
-          type="text"
-          name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        </form> */}
+          {/* form for reviews */}
+          <form onSubmit={saveNewReview}>
+            <label>Traded books with {thisUser.name}? Share how it went!</label>
+            <br></br>
+            <input
+              type="text"
+              name="content"
+              value={review.content}
+              onChange={handleSubmit}
+            />
+            <button type="submit">Submit Review</button>
+          </form>
+          <br></br>
 
+          <p>
+            Check what others have to say about trading with this user<br></br>
+            {thisUser.reviews}
+          </p>
+          <br></br>
           <Link to="/offers/new">
             <button>New Book Offer</button>
           </Link>
