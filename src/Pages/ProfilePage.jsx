@@ -7,12 +7,11 @@ import { AuthContext } from "../Context/auth.context";
 function ProfilePage() {
   const [thisUser, setUser] = useState(null);
   const { userId } = useParams();
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState([]);
   const [rating, setRating] = useState("");
 
   const { logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
 
   const getUser = async () => {
     try {
@@ -50,7 +49,7 @@ function ProfilePage() {
   //review handling
   const handleContent = (e) => {
     setContent(e.target.value);
-    console.log(e.target.value)
+    console.log(e.target.value);
   };
 
   const saveNewReview = async (e) => {
@@ -60,7 +59,7 @@ function ProfilePage() {
       const storedToken = localStorage.getItem("authToken");
       await axios.post(
         `${import.meta.env.VITE_APP_SERVER_URL}/api/review/create/${userId}`,
-        { content, rating },
+        { content: content, rating: rating },
         {
           headers: { Authorization: `Bearer ${storedToken}` },
         }
@@ -105,7 +104,7 @@ function ProfilePage() {
 
           <p>
             Check what others have to say about trading with this user<br></br>
-            {thisUser.reviews}
+            <p>"{thisUser.reviews[0].content}"</p>
           </p>
           <br></br>
           <Link to="/offers/new">
