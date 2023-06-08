@@ -18,6 +18,7 @@ import ProfilePage from "./Pages/ProfilePage";
 import EditBookOfferPage from "./Pages/EditBookOfferPage";
 import AboutUsPage from "./Pages/AboutUsPage";
 import EditProfilePage from "./Pages/EditProfilePage";
+import Footer from "./Components/Footer";
 
 function App() {
   const [offers, setOffers] = useState([]);
@@ -54,6 +55,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/editprofile" element={<EditProfilePage />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

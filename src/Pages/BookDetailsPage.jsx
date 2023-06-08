@@ -50,7 +50,7 @@ function BookDetailsPage() {
     <div className="book-details">
       {book && (
         <div>
-          <img src={book.bookImg} />
+          <img src={book.bookImg} style={{ width: 200 }} />
           <h2>Title: {book.title}</h2>
           <h3>Author: {book.author}</h3>
           <h4>Genre: {book.genre}</h4>

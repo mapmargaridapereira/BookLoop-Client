@@ -7,16 +7,12 @@ import { AuthContext } from "../Context/auth.context";
 function ProfilePage() {
   const [thisUser, setUser] = useState(null);
   const { userId } = useParams();
+  const [content, setContent] = useState("");
+  const [rating, setRating] = useState("");
 
   const { logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
 
-  const [review, setReview] = useState({
-    content: "",
-    author: "",
-    rating: "",
-  });
 
   const getUser = async () => {
     try {
@@ -52,26 +48,26 @@ function ProfilePage() {
   };
 
   //review handling
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setReview({ ...review, [e.target.name]: e.target.value });
+  const handleContent = (e) => {
+    setContent(e.target.value);
+    console.log(e.target.value)
   };
 
-  const saveNewReview = (e) => {
+  const saveNewReview = async (e) => {
     e.preventDefault();
 
-    const reviewData = {
-      content: "",
-      author: "",
-      rating: "",
-    };
-
-    const createNewReview = (reviewData, userId) => {
-      return axios.post(
+    try {
+      const storedToken = localStorage.getItem("authToken");
+      await axios.post(
         `${import.meta.env.VITE_APP_SERVER_URL}/api/review/create/${userId}`,
-        reviewData
+        { content, rating },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
       );
-    };
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -100,8 +96,8 @@ function ProfilePage() {
             <input
               type="text"
               name="content"
-              value={review.content}
-              onChange={handleSubmit}
+              value={content}
+              onChange={handleContent}
             />
             <button type="submit">Submit Review</button>
           </form>
