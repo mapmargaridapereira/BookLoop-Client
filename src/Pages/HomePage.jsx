@@ -16,6 +16,7 @@ function HomePage() {
         Unlock a world of literary exchange at our online book trading platform,
         where stories find new homes and book enthusiasts connect.
       </h1>
+      <br></br>
       <div className="getstarted-button-div">
       <Link to="/signup">
             <button className="getstarted-button">Get Started</button>

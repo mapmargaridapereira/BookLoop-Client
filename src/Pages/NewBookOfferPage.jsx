@@ -83,10 +83,10 @@ function NewBookOffer() {
 
   return (
     <div className="NewBookOffer">
-      <h3>Add New Book for Offer</h3>
+      <h2 className="m-1 p-5">Add New Book for Offer</h2>
 
-      <form onSubmit={saveNewOffer}>
-        <label>Title:</label>
+      <form className="d-flex flex-column align-content-center justify-content-center p-5 m-5" onSubmit={saveNewOffer}>
+        <label><h4>Title:</h4></label>
         <input
           type="text"
           name="title"
@@ -94,7 +94,7 @@ function NewBookOffer() {
           onChange={handleSubmit}
         />
 
-        <label>Author:</label>
+        <label><h4>Author:</h4></label>
         <textarea
           type="text"
           name="author"
@@ -102,21 +102,21 @@ function NewBookOffer() {
           onChange={handleSubmit}
         />
 
-        <label>Genre:</label>
+        <label><h4>Genre:</h4></label>
         <textarea
           type="text"
           name="genre"
           value={book.genre}
           onChange={handleSubmit}
         />
-        <label>Language:</label>
+        <label><h4>Language:</h4></label>
         <textarea
           type="text"
           name="language"
           value={book.language}
           onChange={handleSubmit}
         />
-        <label>Description:</label>
+        <label><h4>Description:</h4></label>
         <textarea
           type="text"
           name="description"
@@ -124,7 +124,7 @@ function NewBookOffer() {
           onChange={handleSubmit}
         />
 
-        <label>Publisher:</label>
+        <label><h4>Publisher:</h4></label>
         <textarea
           type="text"
           name="publisher"
@@ -155,7 +155,7 @@ function NewBookOffer() {
           />
         </label>
 
-        <button type="submit">Submit</button>
+        <button  className="align-center justify-content-center m-5 pink-button" type="submit">Submit</button>
       </form>
     </div>
   );

@@ -62,6 +62,7 @@ function EditBookOfferPage() {
       title: book.title,
       author: book.author,
       genre: book.genre,
+      language: book.language,
       description: book.description,
       publisher: book.publisher,
     };
@@ -116,6 +117,14 @@ function EditBookOfferPage() {
           type="text"
           name="genre"
           value={book.genre}
+          onChange={handleSubmit}
+        />
+<br></br>
+  <label><h4>Language:</h4></label>
+        <textarea
+          type="text"
+          name="language"
+          value={book.language}
           onChange={handleSubmit}
         />
 <br></br>
