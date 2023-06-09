@@ -101,9 +101,9 @@ function EditProfilePage() {
 
   return (
     <div className="edit-profile-page">
-      <h3>Edit Profile</h3>
+      <h2 className="m-1 p-2">Edit Profile</h2>
 
-      <form onSubmit={handleFormSubmit}>
+      <form className="d-flex flex-column align-content-center justify-content-center p-5 m-5"onSubmit={handleFormSubmit}>
         <label>Name:</label>
         <input
           type="text"
@@ -150,11 +150,11 @@ function EditProfilePage() {
             required
           />
         </label>
-
-        <button type="submit">Save Changes</button>
+<br></br>
+        <button className="pink-button"type="submit">Save Changes</button>
       </form>
-
-      <button onClick={deleteProfile}>Delete Profile</button>
+<br></br>
+      <button className="blue-button"onClick={deleteProfile}>Delete Profile</button>
     </div>
   );
 }

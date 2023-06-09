@@ -80,35 +80,35 @@ function ProfilePage() {
   };
 
   return (
-    <div>
+    <div className="profile-card">
       {thisUser && (
         <>
-          <h1>{thisUser.name}</h1>
+          <h2 className="p-4">{thisUser.name}</h2>
           <img
             src={thisUser.profileImg}
             alt="thisUser face"
-            className="user-pic"
+            className="user-pic rounded-circle"
             style={{ width: 100 }}
           />
-          <p>Contact: {thisUser.email}</p>
-          <p>
-            About:
-            {thisUser.about}
-          </p>
-          <ul>Offered Books: {thisUser.offeredBooks}</ul>
-          <ul>Wished Books: {thisUser.wishedBooks}</ul>
+          <h3>About: </h3>
+          <p>{thisUser.about}</p>
+          <h3>Contact me at: </h3>
+          <p>{thisUser.email}</p>
 
           {/* form for reviews */}
           <form onSubmit={saveNewReview}>
-            <label>Traded books with {thisUser.name}? Share how it went!</label>
+            <label className="profile-heading p-4 rounded">Traded books with {thisUser.name}? Share how it went!</label>
             <br></br>
             <input
+            className="review-input"
               type="text"
+              size="50"
               name="content"
               value={content}
               onChange={handleContent}
             />
-            <button type="submit">Submit Review</button>
+            <br></br>
+            <button className="pink-button" type="submit">Submit Review</button>
           </form>
           <br></br>
           {thisUser && (
@@ -116,21 +116,23 @@ function ProfilePage() {
           {/* ... */}
           <h2>Check what others have to say about trading with this user</h2>
           <br />
+          <span className="review-results">
           {renderReviews()}
+          </span>
           <br />
           {/* ... */}
         </>
       )}
           <br></br>
           <Link to="/offers/new">
-            <button>New Book Offer</button>
+            <button className="pink-button">New Book Offer</button>
           </Link>
 
           <Link to="/offers">
-            <button>Back to available books</button>
+            <button className="pink-button">Back to available books</button>
           </Link>
 
-          <button onClick={handleLogout}>Logout</button>
+          <button className="blue-button" onClick={handleLogout}>Logout</button>
         </>
       )}
     </div>

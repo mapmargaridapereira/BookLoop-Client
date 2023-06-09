@@ -56,17 +56,17 @@ function BooksAvailablePage() {
 
   return (
     <div className="BooksAvailablePage">
-  <h3>Search for books up for offer</h3>
-      <input type="text" value={searchQuery} placeholder="Search by Title, Author, or Genre" onChange={handleSearch} />
+    <h2 className="p-4">Search for books up for offer</h2>
+      <input className="form-control mr-sm-2 w-50 align-center" type="text" value={searchQuery} placeholder="Search by Title, Author, or Genre" onChange={handleSearch} />
 
       {books &&
         booksSearch.map((book) => {
           return (
-            <div className="bookCard card" key={book._id}>
+            <div className="bookCard card grid gap-3 section border-0 d-flex" key={book._id}>
               <Link to={`/offers/${book._id}`}>
                 <img src={book.bookImg} style={{ width: 200 }} />
-                <h2>{book.title}</h2>
-                <h3>{book.author}</h3>
+                <h3>{book.title}</h3>
+                <h4>{book.author}</h4>
               </Link>
             </div>
           );

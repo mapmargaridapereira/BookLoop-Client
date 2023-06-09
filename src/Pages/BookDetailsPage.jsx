@@ -47,29 +47,34 @@ function BookDetailsPage() {
   }, []);
 
   return (
-    <div className="book-details">
+    <div>
+    <div className="d-flex align-center justify-content-center">
+    <div className="book-details m-5 p-5">
+    <div className="p-3 m-3">
       {book && (
         <div>
+          <h2>{book.title}</h2> by
+          <h3>{book.author}</h3>
           <img src={book.bookImg} style={{ width: 200 }} />
-          <h2>Title: {book.title}</h2>
-          <h3>Author: {book.author}</h3>
-          <h4>Genre: {book.genre}</h4>
-          <h4>Language: {book.language}</h4>
-          <h4>Publisher: {book.publisher}</h4>
-          <h4>Description:</h4>
+          <h4>Genre:</h4> {book.genre}
+          <h4>Language:</h4> {book.language}
+          <h4>Publisher:</h4>{book.publisher}
+          <h4>Description and book condition:</h4>
           <p>{book.description}</p>
           <a href={`/profile/${book.uploader._id}`}>
             Being offered by: {book.uploader.name}
           </a>
         </div>
       )}
-
+      </div>
+      </div>
+</div>
       <Link to={`/offers/edit/${bookId}`}>
-        <button>Edit Book</button>
+        <button className="align-center justify-content-center pink-button m-5">Edit Book</button>
       </Link>
 
       <Link to="/offers">
-        <button>Back to available books</button>
+        <button className="lign-center justify-content-center blue-button m-5">Back to available books</button>
       </Link>
     </div>
   );

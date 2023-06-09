@@ -42,27 +42,79 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <div className="LoginPage p-4 container py-5 h-100">
+      <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col col-xl-10">
+          <div className="card">
+            <div className="row g-0">
+              <div className="col-md-6 col-lg-5 d-none d-md-block">
+                <img
+                  src="https://i.imgur.com/8diIsX1.jpg"
+                  alt="login form"
+                  className="img-fluid"
+                />
+              </div>
+              <div className="col-md-6 col-lg-7 d-flex align-items-center">
+                <div className="card-body p-4 p-lg-5 text-black">
+                  <form onSubmit={handleLoginSubmit}>
+                    <div className="d-flex align-items-center mb-3 pb-1 login-title">
+                      <img
+                        className="h1 fw-bold mb-0"
+                        style={{ width: 150 }}
+                        src="https://cdn.discordapp.com/attachments/1095679245965086811/1116454551428534372/image.png"
+                      />
+                      <h2>Login</h2>
+                    </div>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+                    <h5 className="fw-normal mb-3 pb-3">
+                      Sign into your account
+                    </h5>
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+                    <div className="form-outline mb-4">
+                      <label className="form-label">Email:</label>
+                      <input
+                        className="form-control form-control-lg"
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleEmail}
+                      />
+                    </div>
 
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    <div className="form-outline mb-4">
+                      <label className="form-label">Password:</label>
+                      <input
+                        className="form-control form-control-lg"
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePassword}
+                      />
+                    </div>
 
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+                    <div className="pt-1 mb-4">
+                      <button
+                        className="btn btn-dark btn-lg btn-block login-button"
+                        type="submit">
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                  {errorMessage && (
+                    <p className="error-message">{errorMessage}</p>
+                  )}
+                  <div className="signup-redirect">
+                    <p className="mb-5 pb-lg-2 signup-redirect">
+                      Don't have an account yet?
+                    </p>
+                    <Link to={"/signup"}> Sign Up</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

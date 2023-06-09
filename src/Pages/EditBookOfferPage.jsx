@@ -90,49 +90,51 @@ function EditBookOfferPage() {
 
   return (
     <div className="edit-book-offer">
-      <h3>Edit Book for Offer</h3>
+      <h2 className="m-1 p-5">Edit Book for Offer</h2>
 
-      <form onSubmit={updateBookOffer}>
-        <label>Title:</label>
+      <form className="d-flex flex-column align-content-center justify-content-center p-5 m-5" onSubmit={updateBookOffer}>
+        <label><h4>Title:</h4></label>
         <input
           type="text"
           name="title"
           value={book.title}
           onChange={handleSubmit}
         />
+<br>
 
-        <label>Author:</label>
+</br>
+        <label><h4>Author:</h4></label>
         <textarea
           type="text"
           name="author"
           value={book.author}
           onChange={handleSubmit}
         />
-
-        <label>Genre:</label>
+<br></br>
+        <label><h4>Genre:</h4></label>
         <textarea
           type="text"
           name="genre"
           value={book.genre}
           onChange={handleSubmit}
         />
-
-        <label>Description:</label>
+<br></br>
+        <label><h4>Description:</h4></label>
         <textarea
           type="text"
           name="description"
           value={book.description}
           onChange={handleSubmit}
         />
-
-        <label>Publisher:</label>
+<br></br>
+        <label><h4>Publisher:</h4></label>
         <textarea
           type="text"
           name="publisher"
           value={book.publisher}
           onChange={handleSubmit}
         />
-
+<br></br>
         {/* for images */}
         <label htmlFor="profileImg" className="form-box">
           <p>Image</p>
@@ -156,9 +158,9 @@ function EditBookOfferPage() {
           />
         </label>
 
-        <button type="submit">Submit Changes</button>
+        <button className="align-center justify-content-center m-5 pink-button"type="submit">Submit Changes</button>
       </form>
-      <button onClick={deleteBook}>Delete Book for Offer</button>
+      <button className="align-center justify-content-center m-5 blue-button"onClick={deleteBook}>Delete Book for Offer</button>
     </div>
   );
 }
