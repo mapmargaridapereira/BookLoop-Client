@@ -137,7 +137,7 @@ function NewBookOffer() {
           <p>Image</p>
           {bookImg ? (
             <>
-              <img src={bookImg} alt="current" />
+              <img src={bookImg} alt="current" style={{ width: 200 }}/>
               <p className="small-buttons">Change Book Image</p>
             </>
           ) : (
