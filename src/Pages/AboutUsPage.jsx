@@ -15,6 +15,9 @@ function AboutUsPage() {
         </div>
         <div className="col-sm">
         <h3>Cristian</h3>
+        <img src="https://scontent.flis3-1.fna.fbcdn.net/v/t39.30808-6/271293406_10217659049702154_6019859063841733476_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cKeIrFY3E-gAX_avWz2&_nc_oc=AQnsY_KZtmDU3a_bpKKat7qPKXUIQzPP5Mx2QiA7rkEqelFRbZiFz2xWFvtLFrmqWSo&_nc_ht=scontent.flis3-1.fna&oh=00_AfDgGh4a78civkT7eP3H8usIPOdMi83h13m21UzN4qMh4A&oe=6487B1CD" className="rounded-circle" style={{ width: 100 }}/>
+        <p>Loves to read Social Studies, Philosophy, and others. <br>
+        </br>Favorite authors: Susan Sontag, Kurt Vonnegut, Ernest Hemingway.</p>
         </div>
         </div>
     </div>
